@@ -292,6 +292,27 @@ const Game = {
         ctx.save();
 
         if (this.levelData.theme === 'forest') {
+            // Sun in sky (top-right, fixed on screen)
+            const sunX = w - 120;
+            const sunY = 90;
+            const glow = ctx.createRadialGradient(sunX, sunY, 0, sunX, sunY, 70);
+            glow.addColorStop(0, 'rgba(255, 255, 200, 0.9)');
+            glow.addColorStop(0.4, 'rgba(255, 220, 100, 0.6)');
+            glow.addColorStop(0.7, 'rgba(255, 180, 50, 0.2)');
+            glow.addColorStop(1, 'rgba(255, 150, 0, 0)');
+            ctx.fillStyle = glow;
+            ctx.beginPath();
+            ctx.arc(sunX, sunY, 70, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#FFEB3B';
+            ctx.beginPath();
+            ctx.arc(sunX, sunY, 45, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#FFD54F';
+            ctx.beginPath();
+            ctx.arc(sunX, sunY, 38, 0, Math.PI * 2);
+            ctx.fill();
+
             for (let i = 0; i < 15; i++) {
                 const x = (i * 120 - (cam * 0.3) % 140) % (w + 140) - 20;
                 ctx.fillStyle = `hsl(140, 40%, ${35 + i % 3 * 5}%)`;
