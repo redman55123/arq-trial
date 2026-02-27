@@ -313,6 +313,32 @@ const Game = {
             ctx.arc(sunX, sunY, 38, 0, Math.PI * 2);
             ctx.fill();
 
+            // Clouds (parallax scrolling)
+            const clouds = [
+                { x: 80, y: 80, scale: 1 },
+                { x: 280, y: 120, scale: 0.8 },
+                { x: 520, y: 70, scale: 1.2 },
+                { x: 720, y: 150, scale: 0.9 },
+                { x: 980, y: 90, scale: 1.1 },
+                { x: 1250, y: 130, scale: 0.85 },
+                { x: 1580, y: 75, scale: 1 }
+            ];
+            const cloudParallax = 0.12;
+            for (const cloud of clouds) {
+                const drawX = cloud.x - cam * cloudParallax;
+                if (drawX > -200 && drawX < w + 100) {
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.92)';
+                    const s = cloud.scale;
+                    ctx.beginPath();
+                    ctx.arc(drawX, cloud.y, 25 * s, 0, Math.PI * 2);
+                    ctx.arc(drawX + 35 * s, cloud.y - 5, 30 * s, 0, Math.PI * 2);
+                    ctx.arc(drawX + 70 * s, cloud.y, 28 * s, 0, Math.PI * 2);
+                    ctx.arc(drawX + 50 * s, cloud.y + 15, 22 * s, 0, Math.PI * 2);
+                    ctx.arc(drawX + 18 * s, cloud.y + 10, 20 * s, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
             for (let i = 0; i < 15; i++) {
                 const x = (i * 120 - (cam * 0.3) % 140) % (w + 140) - 20;
                 ctx.fillStyle = `hsl(140, 40%, ${35 + i % 3 * 5}%)`;
