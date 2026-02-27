@@ -339,6 +339,9 @@ const Game = {
                 }
             }
 
+            // Flying pixel dragon
+            this.drawPixelDragon(ctx, w, h, cam, t);
+
             for (let i = 0; i < 15; i++) {
                 const x = (i * 120 - (cam * 0.3) % 140) % (w + 140) - 20;
                 ctx.fillStyle = `hsl(140, 40%, ${35 + i % 3 * 5}%)`;
@@ -366,6 +369,60 @@ const Game = {
                 ctx.fillRect(x + 5, h - 145, 70, 20);
             }
         }
+
+        ctx.restore();
+    },
+
+    drawPixelDragon(ctx, w, h, cam, t) {
+        const pixel = 6;
+        const flySpeed = 45;
+        const baseX = (t * flySpeed * 60) % (this.levelData.width + 400) - 80;
+        const drawX = baseX - cam * 0.08;
+        if (drawX < -120 || drawX > w + 80) return;
+
+        const bob = Math.sin(t * 8) * 8;
+        const wingFrame = Math.floor(t * 12) % 4;
+        const wingUp = wingFrame === 0 || wingFrame === 2 ? 1 : -1;
+        const baseY = 200 + bob;
+
+        ctx.save();
+        ctx.translate(drawX, baseY);
+
+        // Pixel dragon - body (green/teal)
+        const body = [
+            [0, 2], [1, 2], [2, 2], [3, 2], [4, 2], [5, 2], [6, 1], [7, 1],
+            [8, 0], [9, 0], [10, 0], [11, 0], [12, 1], [13, 1], [14, 2],
+            [4, 3], [5, 3], [6, 3], [7, 3], [8, 3], [9, 3], [10, 3]
+        ];
+        ctx.fillStyle = '#26A69A';
+        body.forEach(([px, py]) => ctx.fillRect(px * pixel, py * pixel, pixel, pixel));
+        ctx.fillStyle = '#00897B';
+        [[2, 2], [6, 2], [10, 2]].forEach(([px, py]) => ctx.fillRect(px * pixel, py * pixel, pixel, pixel));
+
+        // Tail
+        ctx.fillStyle = '#26A69A';
+        [[-2, 2], [-1, 2], [-1, 1], [0, 1]].forEach(([px, py]) => ctx.fillRect(px * pixel, py * pixel, pixel, pixel));
+
+        // Wings (animated - flap up/down)
+        const wingY = 1 + wingUp; // 0 or 2 for up/down
+        ctx.fillStyle = '#4DB6AC';
+        [[3, wingY], [4, wingY], [5, wingY], [6, wingY - 1], [7, wingY - 1],
+         [10, wingY], [11, wingY], [12, wingY], [13, wingY - 1], [14, wingY - 1]]
+            .forEach(([px, py]) => ctx.fillRect(px * pixel, py * pixel, pixel, pixel));
+
+        // Head & horns
+        ctx.fillStyle = '#FF5722';
+        [[15, 0], [16, 0], [17, 0], [15, 1], [16, 1], [17, 1]].forEach(([px, py]) => ctx.fillRect(px * pixel, py * pixel, pixel, pixel));
+        ctx.fillStyle = '#E64A19';
+        [[16, 0], [17, 0]].forEach(([px, py]) => ctx.fillRect(px * pixel, py * pixel, pixel, pixel));
+        ctx.fillStyle = '#795548';
+        [[16, -1], [18, -1]].forEach(([px, py]) => ctx.fillRect(px * pixel, py * pixel, pixel, pixel));
+
+        // Eye
+        ctx.fillStyle = '#FFF';
+        ctx.fillRect(16 * pixel, 1 * pixel, pixel, pixel);
+        ctx.fillStyle = '#000';
+        ctx.fillRect(16 * pixel + 2, 1 * pixel + 2, 2, 2);
 
         ctx.restore();
     },
