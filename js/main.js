@@ -14,6 +14,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Handler para o formulário de contato (prevenir submit padrão)
 document.querySelector('.contact-form')?.addEventListener('submit', function (e) {
     e.preventDefault();
-    alert('Mensagem enviada! (Este é um exemplo - em produção você conectaria um backend.)');
+    alert('Message sent! (This is a demo - in production you would connect a backend.)');
     this.reset();
 });

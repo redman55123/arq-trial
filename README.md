@@ -1,36 +1,36 @@
-# Portfólio Pessoal
+# Personal Portfolio
 
-Site estático de portfólio pessoal em HTML, CSS e JavaScript puro.
+Static personal portfolio website built with plain HTML, CSS, and JavaScript.
 
-## Funcionalidades
+## Features
 
-- **Header de navegação** – Links para Sobre, Projetos e Contato
-- **Seção Sobre** – Biografia pessoal com foto
-- **Seção Projetos** – 4 projetos com imagens e descrições
-- **Seção Contato** – Formulário para inquiries
-- **Footer** – Informações de copyright
+- **Navigation header** – Links to About, Projects, and Contact
+- **About section** – Personal bio with photo
+- **Projects section** – 4 projects with images and descriptions
+- **Contact section** – Form for inquiries
+- **Footer** – Copyright information
 
 ## Design
 
-- Tema claro e limpo
-- Layout responsivo
-- Design simples e moderno
+- Light and clean theme
+- Responsive layout
+- Simple, modern design
 
-## Como usar
+## How to use
 
-Abra o arquivo `index.html` no navegador ou sirva a pasta localmente com um servidor HTTP:
+Open the `index.html` file in your browser or serve the folder locally with an HTTP server:
 
 ```bash
-# Com Python 3
+# With Python 3
 python -m http.server 8000
 
-# Com Node.js (npx)
+# With Node.js (npx)
 npx serve .
 ```
 
-Em seguida, acesse http://localhost:8000
+Then visit http://localhost:8000
 
-## Tecnologias
+## Technologies
 
 - HTML5
 - CSS3
