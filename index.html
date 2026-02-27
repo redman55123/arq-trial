@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Pacman - HTML5 Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1>🍒 PACMAN</h1>
+            <div class="scoreboard">
+                <div class="score-item">
+                    <span class="label">Pontuação</span>
+                    <span id="score">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="label">Vidas</span>
+                    <span id="lives">3</span>
+                </div>
+                <div class="score-item high-score">
+                    <span class="label">Recorde Nível <span id="current-level-display">1</span></span>
+                    <span id="high-score">0</span>
+                </div>
+                <button id="level-select-header-btn" class="level-select-btn" title="Escolher nível">Níveis</button>
+            </div>
+        </header>
+
+        <main class="game-main">
+            <div id="menu-screen" class="screen active">
+                <h2>Escolha o Nível</h2>
+                <div class="level-buttons">
+                    <button class="level-btn" data-level="1">
+                        <span class="level-number">1</span>
+                        <span class="level-desc">Pequeno • Poucos fantasmas</span>
+                    </button>
+                    <button class="level-btn" data-level="2">
+                        <span class="level-number">2</span>
+                        <span class="level-desc">Médio • Mais obstáculos</span>
+                    </button>
+                    <button class="level-btn" data-level="3">
+                        <span class="level-number">3</span>
+                        <span class="level-desc">Grande • Power-ups</span>
+                    </button>
+                </div>
+                <p class="controls-hint">↑↓←→ ou WASD • Toque para mobile</p>
+            </div>
+
+            <div id="game-screen" class="screen">
+                <canvas id="gameCanvas"></canvas>
+                <div id="game-over-overlay" class="overlay hidden">
+                    <div class="overlay-content">
+                        <h2 id="game-over-title">Fim de Jogo</h2>
+                        <p id="game-over-message"></p>
+                        <button id="play-again-btn">Jogar Novamente</button>
+                        <button id="level-select-btn">Escolher Nível</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="touch-controls" id="touch-controls">
+            <div class="dpad">
+                <button class="dpad-btn up" data-dir="up">▲</button>
+                <div class="dpad-mid">
+                    <button class="dpad-btn left" data-dir="left">◀</button>
+                    <button class="dpad-btn right" data-dir="right">▶</button>
+                </div>
+                <button class="dpad-btn down" data-dir="down">▼</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
