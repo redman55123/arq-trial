@@ -59,7 +59,7 @@ const Game = {
         const keyMap = {
             'ArrowLeft': 'left', 'ArrowRight': 'right', 'ArrowUp': 'up',
             'KeyA': 'left', 'KeyD': 'right', 'KeyW': 'up',
-            ' ': 'jump'
+            'Space': 'jump'
         };
         document.addEventListener('keydown', e => {
             const key = keyMap[e.code];
